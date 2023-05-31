@@ -9,11 +9,7 @@ public class ItemCollectableBase : MonoBehaviour
     public float timeToHide = 3f;
     public GameObject graphicItem;
     public AudioSource audioSource;
-
-    private void Awake()
-    {
-        
-    }
+    
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.transform.CompareTag(compareTag))

@@ -1,10 +1,11 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PowerUpBase : ItemCollectableBase
 {
-    public float powerUpDuration;
+    [SerializeField, BoxGroup("PowerUpBase config")] public float powerUpDuration;
 
     protected override void OnCollect()
     {

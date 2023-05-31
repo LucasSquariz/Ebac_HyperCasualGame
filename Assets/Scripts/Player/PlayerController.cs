@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using Ebac.Core.Singleton;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
+    [SerializeField, BoxGroup("References")] public GameObject endScreen;
     [SerializeField, BoxGroup("Lerp setup")] public Transform target;
     [SerializeField, BoxGroup("Lerp setup")] public float lerpSpeed = 1f;
     public float speed = 1f;
@@ -13,9 +15,13 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 _pos;
     private bool _canRun;
+    private float _currentSpeed;
 
-    public GameObject endScreen;
-    
+    private void Start()
+    {
+        ResetSpeed();
+    }
+
     void Update()
     {
         if (!_canRun) return;
@@ -24,7 +30,7 @@ public class PlayerController : MonoBehaviour
         _pos.z = transform.position.z;
 
         transform.position = Vector3.Lerp(transform.position, _pos, lerpSpeed * Time.deltaTime);
-        transform.Translate(transform.forward * speed * Time.deltaTime);
+        transform.Translate(transform.forward * _currentSpeed * Time.deltaTime);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -53,4 +59,17 @@ public class PlayerController : MonoBehaviour
     {
         _canRun = true;
     }
+
+    #region POWERUPS
+
+    public void PowerUpSpeedUp(float speedUp)
+    {
+        _currentSpeed = speedUp;
+    }
+
+    public void ResetSpeed()
+    {
+        _currentSpeed = speed;
+    }
+    #endregion
 }
