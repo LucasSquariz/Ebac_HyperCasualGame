@@ -158,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   compareTag: Player
   itemParticleSystem: {fileID: 0}
-  timeToHide: 3
+  timeToHide: 0
   graphicItem: {fileID: 5986649393264835018}
   audioSource: {fileID: 0}
-  powerUpDuration: 2
+  powerUpDuration: 10

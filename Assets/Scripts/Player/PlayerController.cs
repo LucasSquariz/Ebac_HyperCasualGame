@@ -4,6 +4,7 @@ using UnityEngine;
 using NaughtyAttributes;
 using Ebac.Core.Singleton;
 using TMPro;
+using DG.Tweening;
 
 public class PlayerController : Singleton<PlayerController>
 {
@@ -18,12 +19,14 @@ public class PlayerController : Singleton<PlayerController>
     [ShowNonSerializedField] private string tagToCheckEnemy = "Enemy";
     [ShowNonSerializedField] private string tagToCheckEndLine = "EndLine";
     [ShowNonSerializedField] private Vector3 _pos;
+    [ShowNonSerializedField] private Vector3 _startPosition;
     [ShowNonSerializedField] private bool _canRun;
     [ShowNonSerializedField] private float _currentSpeed;
     [ShowNonSerializedField] private bool _isInvencible;
 
     private void Start()
     {
+        _startPosition = transform.position;
         ResetSpeed();
     }
 
@@ -78,6 +81,26 @@ public class PlayerController : Singleton<PlayerController>
     public void PowerUpInvencible(bool invencibleStatus = true)
     {
         _isInvencible = invencibleStatus;
+    }
+
+    public void ChangeHeight(float height, float duration, float animationDuration, Ease ease)
+    {
+        /*var p = transform.position;
+        p.y = _startPosition.y + height;
+        transform.position = p;
+        */
+
+        transform.DOMoveY(_startPosition.y + height, animationDuration).SetEase(ease);
+        Invoke(nameof(ResetHeight), duration);
+    }
+
+    public void ResetHeight()
+    {
+        /*var position = transform.position;
+        position.y = _startPosition.y;
+        transform.position = position;
+        */
+        transform.DOMoveY(_startPosition.y, .1f);
     }
 
     public void ResetSpeed()
