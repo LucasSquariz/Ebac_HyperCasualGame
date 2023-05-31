@@ -3,19 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using Ebac.Core.Singleton;
+using TMPro;
 
 public class PlayerController : Singleton<PlayerController>
 {
     [SerializeField, BoxGroup("References")] public GameObject endScreen;
+    [SerializeField, BoxGroup("References")] public TextMeshPro uiTextPowerUp;
+
     [SerializeField, BoxGroup("Lerp setup")] public Transform target;
     [SerializeField, BoxGroup("Lerp setup")] public float lerpSpeed = 1f;
-    public float speed = 1f;
-    public string tagToCheckEnemy = "Enemy";
-    public string tagToCheckEndLine = "EndLine";
 
-    private Vector3 _pos;
-    private bool _canRun;
-    private float _currentSpeed;
+    [SerializeField, BoxGroup("Player setup")] public float speed = 1f;
+
+    [ShowNonSerializedField] private string tagToCheckEnemy = "Enemy";
+    [ShowNonSerializedField] private string tagToCheckEndLine = "EndLine";
+    [ShowNonSerializedField] private Vector3 _pos;
+    [ShowNonSerializedField] private bool _canRun;
+    [ShowNonSerializedField] private float _currentSpeed;
+    [ShowNonSerializedField] private bool _isInvencible;
 
     private void Start()
     {
@@ -37,7 +42,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         if (collision.transform.CompareTag(tagToCheckEnemy))
         {
-            EndGame();
+            if(!_isInvencible) EndGame();
         }
     }
 
@@ -61,10 +66,18 @@ public class PlayerController : Singleton<PlayerController>
     }
 
     #region POWERUPS
-
+    public void SetTextPowerUp(string title)
+    {
+        uiTextPowerUp.text = title;
+    }
     public void PowerUpSpeedUp(float speedUp)
     {
         _currentSpeed = speedUp;
+    }
+
+    public void PowerUpInvencible(bool invencibleStatus = true)
+    {
+        _isInvencible = invencibleStatus;
     }
 
     public void ResetSpeed()
