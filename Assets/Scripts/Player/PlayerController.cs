@@ -10,6 +10,7 @@ public class PlayerController : Singleton<PlayerController>
 {
     [SerializeField, BoxGroup("References")] public GameObject endScreen;
     [SerializeField, BoxGroup("References")] public TextMeshPro uiTextPowerUp;
+    [SerializeField, BoxGroup("References")] public GameObject coinCollector;
 
     [SerializeField, BoxGroup("Lerp setup")] public Transform target;
     [SerializeField, BoxGroup("Lerp setup")] public float lerpSpeed = 1f;
@@ -103,9 +104,16 @@ public class PlayerController : Singleton<PlayerController>
         transform.DOMoveY(_startPosition.y, .1f);
     }
 
+    public void ChangeCoinCollectorSize(float size)
+    {
+        coinCollector.transform.localScale = Vector3.one * size;
+    }
+
     public void ResetSpeed()
     {
         _currentSpeed = speed;
     }
+
+
     #endregion
 }

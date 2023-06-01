@@ -17,11 +17,16 @@ public class ItemCollectableBase : MonoBehaviour
             Collect();
         }
     }
-    protected virtual void Collect() { 
-        if(graphicItem != null) { graphicItem.SetActive(false); }
+    protected virtual void HideItems()
+    {
+        if (graphicItem != null) { graphicItem.SetActive(false); }
         Invoke("HideObject", timeToHide);
-        OnCollect();
     }
+
+    protected virtual void Collect() {
+        HideItems();
+        OnCollect();
+    }    
 
     private void HideObject()
     {
