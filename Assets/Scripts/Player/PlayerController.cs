@@ -23,6 +23,7 @@ public class PlayerController : Singleton<PlayerController>
     [ShowNonSerializedField] private Vector3 _pos;
     [ShowNonSerializedField] private Vector3 _startPosition;
     [ShowNonSerializedField] private bool _canRun;
+    [ShowNonSerializedField] private float _baseSpeedToAnimation = 7f;
     [ShowNonSerializedField] private float _currentSpeed;
     [ShowNonSerializedField] private bool _isInvencible;
 
@@ -78,7 +79,7 @@ public class PlayerController : Singleton<PlayerController>
     public void StartToRun()
     {
         _canRun = true;
-        animatorManager.PlayAnimation(AnimatorManager.AnimationType.RUN);
+        animatorManager.PlayAnimation(AnimatorManager.AnimationType.RUN, _currentSpeed / _baseSpeedToAnimation);
     }
 
     #region POWERUPS
