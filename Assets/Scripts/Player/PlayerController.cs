@@ -11,6 +11,7 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField, BoxGroup("References")] public GameObject endScreen;
     [SerializeField, BoxGroup("References")] public TextMeshPro uiTextPowerUp;
     [SerializeField, BoxGroup("References")] public GameObject coinCollector;
+    [SerializeField, BoxGroup("References")] public AnimatorManager animatorManager;
 
     [SerializeField, BoxGroup("Lerp setup")] public Transform target;
     [SerializeField, BoxGroup("Lerp setup")] public float lerpSpeed = 1f;
@@ -46,7 +47,11 @@ public class PlayerController : Singleton<PlayerController>
     {
         if (collision.transform.CompareTag(tagToCheckEnemy))
         {
-            if(!_isInvencible) EndGame();
+            if (!_isInvencible) 
+            {
+                MoveBack(collision.transform);
+                EndGame(AnimatorManager.AnimationType.DEAD); 
+            }
         }
     }
 
@@ -58,15 +63,22 @@ public class PlayerController : Singleton<PlayerController>
         }
     }
 
-    public void EndGame()
+    private void MoveBack(Transform t)
+    {
+        t.DOMoveZ(1f, .3f).SetRelative();
+    }
+
+    public void EndGame(AnimatorManager.AnimationType animationType = AnimatorManager.AnimationType.IDLE)
     {
         _canRun = false;
         endScreen.SetActive(true);
+        animatorManager.PlayAnimation(animationType);
     }
 
     public void StartToRun()
     {
         _canRun = true;
+        animatorManager.PlayAnimation(AnimatorManager.AnimationType.RUN);
     }
 
     #region POWERUPS

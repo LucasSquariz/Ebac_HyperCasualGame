@@ -147,6 +147,7 @@ MonoBehaviour:
   timeToHide: 0
   graphicItem: {fileID: 103157560342576466}
   audioSource: {fileID: 0}
-  collider: {fileID: 7932037319899950670}
+  coinCollider: {fileID: 7932037319899950670}
   collect: 0
   lerp: 5
+  minDistance: 1.2
