@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ItemCollectableCoin : ItemCollectableBase
 {
-    [SerializeField, BoxGroup("References")] public Collider collider;
+    [SerializeField, BoxGroup("References")] public Collider coinCollider;
 
     [SerializeField, BoxGroup("Coin Collectable config")] public bool collect = false;
     [SerializeField, BoxGroup("Coin Collectable config")] public float lerp = 5f;
@@ -13,7 +13,7 @@ public class ItemCollectableCoin : ItemCollectableBase
     protected override void OnCollect()
     {
         base.OnCollect();
-        collider.enabled = false;
+        coinCollider.enabled = false;
         collect = true;
     }
 
