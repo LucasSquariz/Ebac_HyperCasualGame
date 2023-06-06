@@ -14,5 +14,5 @@ public class LevelPieceBaseSetup : ScriptableObject
     [SerializeField, BoxGroup("Pieces config")] public int piecesNumber = 5;
     [SerializeField, BoxGroup("Pieces config")] public int piecesNumberEnd = 1;
     
-    [SerializeField, BoxGroup("Art config")] public ArtManager.ArtType type;
+    [SerializeField, BoxGroup("Art config")] public ArtManager.ArtType artType;
 }

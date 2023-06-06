@@ -22,3 +22,4 @@ MonoBehaviour:
   piecesNumberStart: 3
   piecesNumber: 8
   piecesNumberEnd: 1
+  artType: 1

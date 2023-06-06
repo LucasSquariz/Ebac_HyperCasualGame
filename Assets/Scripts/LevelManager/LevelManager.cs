@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour
     [ShowNonSerializedField] private GameObject _currentLevel;
     [ShowNonSerializedField] private List<LevelPieceBase> _spawnedPieces = new List<LevelPieceBase>();
     [ShowNonSerializedField] private LevelPieceBaseSetup _currentSetup;
-    private void Awake()
+    private void Start()
     {
         //SpawnNextLevel();
         CreateLevelPieces();
@@ -74,6 +74,8 @@ public class LevelManager : MonoBehaviour
         {
             CreateLevelPiece(_currentSetup.levelPiecesEnd);
         }
+
+        ColorManager.Instance.ChangeColorByType(_currentSetup.artType);
     }
     private void CreateLevelPiece(List<LevelPieceBase> list)
     {
@@ -90,8 +92,8 @@ public class LevelManager : MonoBehaviour
         }
 
         foreach(var p in spawnedPiece.GetComponentsInChildren<ArtPiece>())
-        {
-            p.ChangePiece(ArtManager.Instance.GetSetupByType(_currentSetup.type).gameObject);
+        {            
+            p.ChangePiece(ArtManager.Instance.GetSetupByType(_currentSetup.artType).gameObject);
         }
 
         _spawnedPieces.Add(spawnedPiece);

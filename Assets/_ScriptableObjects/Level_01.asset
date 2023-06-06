@@ -23,4 +23,4 @@ MonoBehaviour:
   piecesNumberStart: 3
   piecesNumber: 5
   piecesNumberEnd: 1
-  type: 0
+  artType: 0
