@@ -658,6 +658,7 @@ MonoBehaviour:
   levelPieceSetups:
   - {fileID: 11400000, guid: 54058078c22c5894faf6dd5ba6910cf3, type: 2}
   - {fileID: 11400000, guid: b5e0bed0b6c540a4a896fbe333493912, type: 2}
+  - {fileID: 11400000, guid: da91566caefcbf348877e9fd909873be, type: 2}
   timeBetweenPieces: 0.3
 --- !u!4 &671611912
 Transform:
@@ -1078,6 +1079,10 @@ MonoBehaviour:
     colors:
     - {r: 0.5660378, g: 0, b: 0.48088995, a: 0}
     - {r: 0.1764706, g: 0.47188246, b: 0.8784314, a: 0}
+  - artType: 2
+    colors:
+    - {r: 0.42629364, g: 0.9056604, b: 0.029049424, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &822177881
 Transform:
   m_ObjectHideFlags: 0
@@ -1857,6 +1862,8 @@ MonoBehaviour:
   - artType: 0
     gameObject: {fileID: 7839029037307701382, guid: 685459f6486138c4687f8741d41c0b55, type: 3}
   - artType: 1
+    gameObject: {fileID: 2405192606207015790, guid: 5454d16d371022f418eed089b29df16c, type: 3}
+  - artType: 2
     gameObject: {fileID: 2405192606207015790, guid: 5454d16d371022f418eed089b29df16c, type: 3}
 --- !u!4 &1588073917
 Transform:

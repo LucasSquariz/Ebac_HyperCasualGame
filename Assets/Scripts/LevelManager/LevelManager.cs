@@ -58,7 +58,7 @@ public class LevelManager : MonoBehaviour
 
         }
 
-        _currentSetup = levelPieceSetups[_index];
+        _currentSetup = levelPieceSetups[Random.Range(0, levelPieceSetups.Count)];
 
         for (int i = 0; i < _currentSetup.piecesNumberStart; i++)
         {
