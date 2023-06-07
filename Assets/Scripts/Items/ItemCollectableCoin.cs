@@ -10,6 +10,12 @@ public class ItemCollectableCoin : ItemCollectableBase
     [SerializeField, BoxGroup("Coin Collectable config")] public bool collect = false;
     [SerializeField, BoxGroup("Coin Collectable config")] public float lerp = 5f;
     [SerializeField, BoxGroup("Coin Collectable config")] public float minDistance = 1.2f;
+
+    private void Start()
+    {
+        CoinsAnimationManager.Instance.RegisterCoin(this);    
+    }
+
     protected override void OnCollect()
     {
         base.OnCollect();

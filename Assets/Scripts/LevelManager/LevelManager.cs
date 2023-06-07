@@ -60,6 +60,7 @@ public class LevelManager : MonoBehaviour
             _spawnedPieces[i].transform.DOScale(1, scaleDuration).SetEase(ease);
             yield return new WaitForSeconds(scaleTimeBetweenPieces);
         }
+        CoinsAnimationManager.Instance.StartAnimations();
     }
 
     #region PIECES
@@ -75,7 +76,6 @@ public class LevelManager : MonoBehaviour
             {
                 ResetIndex();
             }
-
         }
 
         _currentSetup = levelPieceSetups[Random.Range(0, levelPieceSetups.Count)];
@@ -96,8 +96,9 @@ public class LevelManager : MonoBehaviour
         }
 
         ColorManager.Instance.ChangeColorByType(_currentSetup.artType);
-        StartCoroutine(ScalePiecesByTime());
+        StartCoroutine(ScalePiecesByTime());        
     }
+
     private void CreateLevelPiece(List<LevelPieceBase> list)
     {
         var piece = list[Random.Range(0, list.Count)];
@@ -117,7 +118,7 @@ public class LevelManager : MonoBehaviour
             p.ChangePiece(ArtManager.Instance.GetSetupByType(_currentSetup.artType).gameObject);
         }
 
-        _spawnedPieces.Add(spawnedPiece);
+        _spawnedPieces.Add(spawnedPiece);        
     }
 
     private void ClearSpawnedPieces()
