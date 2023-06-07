@@ -431,6 +431,7 @@ GameObject:
   - component: {fileID: 283884229}
   - component: {fileID: 283884233}
   - component: {fileID: 283884234}
+  - component: {fileID: 283884235}
   m_Layer: 0
   m_Name: PlayerContainer
   m_TagString: Player
@@ -551,9 +552,25 @@ MonoBehaviour:
   uiTextPowerUp: {fileID: 682834759}
   coinCollector: {fileID: 722357717}
   animatorManager: {fileID: 1627859705}
+  _bounceHelper: {fileID: 283884235}
   target: {fileID: 1844013859}
   lerpSpeed: 3
   speed: 7
+--- !u!114 &283884235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283884226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ccfe73a39a8ea74fa5bff2e547bd0f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleDuration: 0.05
+  scaleBounce: 1.2
+  ease: 1
 --- !u!1 &331780166
 GameObject:
   m_ObjectHideFlags: 0

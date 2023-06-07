@@ -12,6 +12,7 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField, BoxGroup("References")] public TextMeshPro uiTextPowerUp;
     [SerializeField, BoxGroup("References")] public GameObject coinCollector;
     [SerializeField, BoxGroup("References")] public AnimatorManager animatorManager;
+    [SerializeField, BoxGroup("References")] public BounceHelper _bounceHelper;
 
     [SerializeField, BoxGroup("Lerp setup")] public Transform target;
     [SerializeField, BoxGroup("Lerp setup")] public float lerpSpeed = 1f;
@@ -42,6 +43,11 @@ public class PlayerController : Singleton<PlayerController>
 
         transform.position = Vector3.Lerp(transform.position, _pos, lerpSpeed * Time.deltaTime);
         transform.Translate(transform.forward * _currentSpeed * Time.deltaTime);
+    }
+
+    public void Bounce()
+    {
+        if(_bounceHelper != null) _bounceHelper.Bounce();
     }
 
     private void OnCollisionEnter(Collision collision)

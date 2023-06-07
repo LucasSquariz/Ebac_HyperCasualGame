@@ -17,15 +17,7 @@ public class CoinsAnimationManager : Singleton<CoinsAnimationManager>
     private void Start()
     {
         itens = new List<ItemCollectableCoin>();
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.V))
-        {
-            StartAnimations();
-        }
-    }
+    }   
 
     public void RegisterCoin(ItemCollectableCoin coin)
     {
