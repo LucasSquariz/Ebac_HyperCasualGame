@@ -23,6 +23,7 @@ public class PlayerController : Singleton<PlayerController>
     [ShowNonSerializedField] private string tagToCheckEndLine = "EndLine";
     [ShowNonSerializedField] private Vector3 _pos;
     [ShowNonSerializedField] private Vector3 _startPosition;
+    [ShowNonSerializedField] private Vector3 _inicialScale = Vector3.zero;
     [ShowNonSerializedField] private bool _canRun;
     [ShowNonSerializedField] private float _baseSpeedToAnimation = 7f;
     [ShowNonSerializedField] private float _currentSpeed;
@@ -31,6 +32,7 @@ public class PlayerController : Singleton<PlayerController>
     private void Start()
     {
         _startPosition = transform.position;
+        transform.localScale = _inicialScale;
         ResetSpeed();
     }
 
@@ -45,9 +47,9 @@ public class PlayerController : Singleton<PlayerController>
         transform.Translate(transform.forward * _currentSpeed * Time.deltaTime);
     }
 
-    public void Bounce()
+    public void Bounce(float scaleBounce)
     {
-        if(_bounceHelper != null) _bounceHelper.Bounce();
+        if(_bounceHelper != null) _bounceHelper.Bounce(scaleBounce);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -57,6 +59,7 @@ public class PlayerController : Singleton<PlayerController>
             if (!_isInvencible) 
             {
                 MoveBack(collision.transform);
+                Bounce(0.5f);
                 EndGame(AnimatorManager.AnimationType.DEAD); 
             }
         }
@@ -86,6 +89,8 @@ public class PlayerController : Singleton<PlayerController>
     {
         _canRun = true;
         animatorManager.PlayAnimation(AnimatorManager.AnimationType.RUN, _currentSpeed / _baseSpeedToAnimation);
+        Bounce(1.2f);
+        transform.localScale = Vector3.one;
     }
 
     #region POWERUPS

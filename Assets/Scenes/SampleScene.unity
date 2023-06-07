@@ -569,7 +569,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleDuration: 0.05
-  scaleBounce: 1.2
   ease: 1
 --- !u!1 &331780166
 GameObject:
@@ -1149,8 +1148,8 @@ MonoBehaviour:
     - {r: 0.1764706, g: 0.47188246, b: 0.8784314, a: 0}
   - artType: 2
     colors:
-    - {r: 0.42629364, g: 0.9056604, b: 0.029049424, a: 0}
-    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.027450955, g: 0.90588236, b: 0.89411765, a: 0}
+    - {r: 0.9056604, g: 0.86655664, b: 0.16575289, a: 0.59607846}
 --- !u!4 &822177881
 Transform:
   m_ObjectHideFlags: 0

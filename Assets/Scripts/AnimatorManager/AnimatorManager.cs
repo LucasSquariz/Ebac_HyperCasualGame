@@ -24,21 +24,7 @@ public class AnimatorManager : MonoBehaviour
                 break;
             }
         }
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            PlayAnimation(AnimationType.IDLE);
-        } else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            PlayAnimation(AnimationType.RUN);
-        } else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            PlayAnimation(AnimationType.DEAD);
-        }
-    }
+    }    
 }
 
 [System.Serializable]

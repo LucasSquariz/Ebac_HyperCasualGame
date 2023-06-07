@@ -21,7 +21,10 @@ public class MovimentHelper : MonoBehaviour
     private void NextIndex()
     {
         _index++;
-        if (_index >= positions.Count) _index = 0;
+        if (_index >= positions.Count) 
+        {
+            _index = 0;
+        }
     }
     IEnumerator StartMoviment()
     {
