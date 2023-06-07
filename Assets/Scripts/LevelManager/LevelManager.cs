@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class LevelManager : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField, BoxGroup("References")] public List<LevelPieceBaseSetup> levelPieceSetups;
 
     [SerializeField, BoxGroup("Pieces config")] public float timeBetweenPieces = .3f;
+
+    [SerializeField, BoxGroup("Animation config")] public float scaleDuration = .2f;
+    [SerializeField, BoxGroup("Animation config")] public float scaleTimeBetweenPieces = .1f;
+    [SerializeField, BoxGroup("Animation config")] public Ease ease = Ease.OutBack;
 
     [ShowNonSerializedField] private int _index;
     [ShowNonSerializedField] private GameObject _currentLevel;
@@ -41,8 +46,23 @@ public class LevelManager : MonoBehaviour
         _index = 0;
     }
 
-    #region PIECES
+    IEnumerator ScalePiecesByTime()
+    {
+        foreach(var piece in _spawnedPieces)
+        {
+            piece.transform.localScale = Vector3.zero;
+        }
 
+        yield return null;
+
+        for(int i = 0;  i < _spawnedPieces.Count; i++)
+        {
+            _spawnedPieces[i].transform.DOScale(1, scaleDuration).SetEase(ease);
+            yield return new WaitForSeconds(scaleTimeBetweenPieces);
+        }
+    }
+
+    #region PIECES
     private void CreateLevelPieces()
     {        
         ClearSpawnedPieces();
@@ -76,6 +96,7 @@ public class LevelManager : MonoBehaviour
         }
 
         ColorManager.Instance.ChangeColorByType(_currentSetup.artType);
+        StartCoroutine(ScalePiecesByTime());
     }
     private void CreateLevelPiece(List<LevelPieceBase> list)
     {

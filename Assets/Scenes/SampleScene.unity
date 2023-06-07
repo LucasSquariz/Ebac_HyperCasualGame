@@ -660,6 +660,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b5e0bed0b6c540a4a896fbe333493912, type: 2}
   - {fileID: 11400000, guid: da91566caefcbf348877e9fd909873be, type: 2}
   timeBetweenPieces: 0.3
+  scaleDuration: 0.2
+  scaleTimeBetweenPieces: 0.1
+  ease: 27
 --- !u!4 &671611912
 Transform:
   m_ObjectHideFlags: 0
