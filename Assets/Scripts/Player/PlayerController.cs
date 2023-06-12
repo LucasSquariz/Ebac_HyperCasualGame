@@ -19,6 +19,7 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField, BoxGroup("Lerp setup")] public float lerpSpeed = 1f;
 
     [SerializeField, BoxGroup("Player setup")] public float speed = 1f;
+    [SerializeField, BoxGroup("Player setup")] public Vector2 limit = new Vector2(-4, 4);
 
     [ShowNonSerializedField] private string tagToCheckEnemy = "Enemy";
     [ShowNonSerializedField] private string tagToCheckEndLine = "EndLine";
@@ -43,6 +44,9 @@ public class PlayerController : Singleton<PlayerController>
         _pos = target.position;
         _pos.y = transform.position.y;
         _pos.z = transform.position.z;
+
+        if( _pos.x < limit.x) _pos.x = limit.x;
+        if (_pos.x > limit.y) _pos.x = limit.y;
 
         transform.position = Vector3.Lerp(transform.position, _pos, lerpSpeed * Time.deltaTime);
         transform.Translate(transform.forward * _currentSpeed * Time.deltaTime);
