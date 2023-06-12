@@ -13,6 +13,7 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField, BoxGroup("References")] public GameObject coinCollector;
     [SerializeField, BoxGroup("References")] public AnimatorManager animatorManager;
     [SerializeField, BoxGroup("References")] public BounceHelper _bounceHelper;
+    [SerializeField, BoxGroup("References")] public ParticleSystem vfxDeath;
 
     [SerializeField, BoxGroup("Lerp setup")] public Transform target;
     [SerializeField, BoxGroup("Lerp setup")] public float lerpSpeed = 1f;
@@ -83,6 +84,7 @@ public class PlayerController : Singleton<PlayerController>
         _canRun = false;
         endScreen.SetActive(true);
         animatorManager.PlayAnimation(animationType);
+        if(vfxDeath != null) vfxDeath.Play();
     }
 
     public void StartToRun()
