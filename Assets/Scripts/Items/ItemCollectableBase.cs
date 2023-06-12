@@ -35,7 +35,10 @@ public class ItemCollectableBase : MonoBehaviour
 
     protected virtual void OnCollect() 
     {
-        if(itemParticleSystem != null) itemParticleSystem.Play();
+        if (itemParticleSystem != null) {
+            itemParticleSystem.transform.SetParent(null);
+            itemParticleSystem.Play();
+        }
         if (audioSource != null) audioSource.Play();
     }
 }
