@@ -57,11 +57,11 @@ public class PlayerController : Singleton<PlayerController>
         if(_bounceHelper != null) _bounceHelper.Bounce(scaleBounce);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
+    public void OnEnemyCollisionEnter(Collision collision)
+    {        
         if (collision.transform.CompareTag(tagToCheckEnemy))
         {
-            if (!_isInvencible) 
+            if (!_isInvencible && _canRun) 
             {
                 MoveBack(collision.transform);
                 Bounce(0.5f);
@@ -70,7 +70,7 @@ public class PlayerController : Singleton<PlayerController>
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnEndlineTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag(tagToCheckEndLine))
         {

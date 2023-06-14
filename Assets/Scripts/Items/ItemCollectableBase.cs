@@ -12,6 +12,7 @@ public class ItemCollectableBase : MonoBehaviour
     
     private void OnTriggerEnter(Collider collision)
     {
+        Debug.Log(collision.gameObject.name);
         if (collision.transform.CompareTag(compareTag))
         {
             Collect();
